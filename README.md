@@ -1,1 +1,1 @@
-# metacrafters-ethproof-beginner
+# Metacrafters' ETH PROOF: Beginner EVM Course Practice
