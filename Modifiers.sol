@@ -1,10 +1,10 @@
-pragma solidity >=0.7.0 <0.9.0; //solidity version
-contract greatestnum{
+// SPDX-License-Identifier: Unlicenced
+pragma solidity >=0.7.0 <0.9.0;
+
+contract Calculator{
 
     uint a;
     uint b;
-    uint c;
-    uint d;
     address owner;
 
     constructor(){
@@ -16,25 +16,24 @@ contract greatestnum{
         _;
     }
 
-    function set (uint _a, uint _b, uint _c, uint _d) public onlyOwner{
+    function set (uint _a, uint _b) public onlyOwner{
         a = _a;
         b = _b;
-        c = _c;
-        d = _d;
     }
 
-    function get() public view onlyOwner returns(uint){
-        if ((a > b) && (a > c) && (a > d)){
-        return(a);
-        }
-        else if ((b >c ) && (b > d) && (b > a)){
-            return(b);
-        }
-        else if ((c > d) && (c > a) && (c > b)){
-            return(c);
-        }
-        else {
-            return(d);
-        }
+    function add() public view onlyOwner returns(uint){
+        return a+b;
+    }
+
+    function sub() public view onlyOwner returns(uint){
+        return a-b;
+    }
+
+    function mul() public view onlyOwner returns(uint){
+        return a*b;
+    }
+
+    function div() public view onlyOwner returns(uint){
+        return a/b;
     }
 }
