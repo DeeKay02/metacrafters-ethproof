@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract ViewPurePay {
-    address payable public owner;
+    address payable internal owner;
 
     constructor() payable {
         owner = payable(msg.sender);
@@ -13,21 +13,21 @@ contract ViewPurePay {
         _;
     }
 
-    function myBal() public view returns (uint) {
+    function myBal() internal view returns (uint) {
         return owner.balance;
     }
 
-    function contractBal() public view returns (uint) {
+    function contractBal() internal view returns (uint) {
         return address(this).balance;
     }
 
-    function add(uint i, uint j) public pure returns (uint) {
+    function add(uint i, uint j) internal pure returns (uint) {
         return i + j;
     }
 
     function deposit() public payable {}
 
-    function withdraw(uint _amt) public onlyOwner {
+    function withdraw(uint _amt) internal onlyOwner {
         owner.transfer(_amt);
     }
 }
