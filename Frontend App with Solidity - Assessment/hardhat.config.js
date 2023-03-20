@@ -40,9 +40,42 @@ module.exports = {
       blockConfirmations: 6
     },
   },
-  paths: {
-    artifacts: "./src/artifacts",
+  etherscan: {
+    // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
+    apiKey: {
+      goerli: ETHERSCAN_API_KEY,
+      sepolia: ETHERSCAN_API_KEY,
+    },
+    customChains: [
+      {
+        network: "goerli",
+        chainId: 5,
+        urls: {
+          apiURL: "https://api-goerli.etherscan.io/api",
+          browserURL: "https://goerli.etherscan.io",
+        },
+      },
+      {
+        network: "sepolia",
+        chainId: 11155111,
+        urls: {
+          apiURL: "https://api-sepolia.etherscan.io/api",
+          browserURL: "https://sepolia.etherscan.io",
+        },
+      },
+    ],
   },
+  // gasReporter: {
+  //   enabled: REPORT_GAS,
+  //   currency: "USD",
+  //   outputFile: "gas-report.txt",
+  //   noColors: true,
+  //   // coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+  // },
+  // contractSizer: {
+  //   runOnCompile: false,
+  //   only: ["Raffle"],
+  // },
   namedAccounts: {
     deployer: {
       default: 0, // here this will by default take the first account as deployer
@@ -56,9 +89,6 @@ module.exports = {
     compilers: [
       {
         version: "0.8.17",
-      },
-      {
-        version: "0.4.24",
       },
     ],
   },

@@ -1,9 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// A game where the 3rd person that deposit ether wins all the ether in the contract
-// the winner can claim the 0.3 ether
-
 contract Game {
     uint256 private randNo;
     address public winner;
@@ -29,7 +26,7 @@ contract Game {
 
     function claimReward() public {
         require(msg.sender == winner, "Not winner");
-        (bool sent, ) = msg.sender.call{value: 0.1 ether}("");
+        (bool sent, ) = payable(msg.sender).call{value: 0.1 ether}("");
         require(sent, "Failed to send Ether");
         winner = address(0);
     }
